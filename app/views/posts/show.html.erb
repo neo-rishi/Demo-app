@@ -1,0 +1,22 @@
+
+<div class='post'>
+  <%=@post.name%><br>
+  <%=form_for([@post, @comment]) do |f|%>
+    <%=f.label Comment %>
+    <%=f.text_area :content%>
+
+    <%=f.submit%>
+  <%end%>
+</div>
+<br>
+<div>
+  <table class="table table-hover">
+    <%@post.comments.reverse_order.each do |comment|%>
+      <tr>
+        <td><%=comment.content%></td>
+      </tr>
+    <%end%>
+  </table>
+</div>
+
+

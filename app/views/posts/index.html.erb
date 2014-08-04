@@ -1,0 +1,18 @@
+<br>
+  <%= link_to 'New Post', new_post_path, class: "btn btn-primary " %>
+  <br><br><br>
+
+
+<table>
+<%@posts.each do |post|%>
+  <tr>
+    <td><%=post.name%></td>
+    <td><%= link_to 'Show', post_path(post), class: "btn btn-default btn-xs" %></td>
+    <td><%= link_to 'Update', edit_post_path(post), class: "btn btn-default btn-xs" %></td>
+    <td><td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-xs" %></td>
+  </tr>
+<%end%>
+</table>
+
+
+
