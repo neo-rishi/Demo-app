@@ -2,15 +2,39 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   resources :users do
+    member do
+      get 'follow_unfollow'
+      get 'change_password'
+      post 'change_password_method'
+      get 'update_profile'
+      post 'update_profile_method'
+    end
     collection do
+      get 'follow'
       post 'login'
       get 'signin'
       get 'logout'
+      get 'followers'
+      get 'followings'
+      get 'favourite_show'
+      get 'new_messages'
+      post 'messages'
     end
   end
-  resources :posts do
-    resources :comments
+  resources :posts, except: [:new] do
+    member do
+      get 'post_vote_up'
+      get 'post_vote_down'
+      get 'favourite'
+    end
+    collection do
+
+    end
+    resources :comments, only: [:create]
   end
+
+
+  resources :profile
 
 
   # The priority is based upon order of creation: first created -> highest priority.

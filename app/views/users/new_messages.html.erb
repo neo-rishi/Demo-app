@@ -1,0 +1,21 @@
+<div class='page-header'>
+  <h1> Your Meassages.... </h1>
+</div>
+<%= form_for(@message, url: messages_users_path) do |f|%>
+    <table>
+
+        <tr><td>
+          <%=f.select :to, options_for_select(@users.collect{ |u| [u.email, u.email] })%>
+
+        </td></tr>
+        <tr><td><%=f.text_area :text, class: "form-control", placeholder: "Message",:cols => 30, :rows => 5 %></td></tr><br>
+        <tr><td ><%=f.submit 'Send', class: "btn btn-default btn-sm",id: 'message', style: "width: 100px;"%></td></tr>
+    </table>
+<% end %>
+<br><br>
+<% @messages.each do |m|%>
+  <div>
+    <%=User.find(m.from).name%>->&nbsp;&nbsp;&nbsp;&nbsp;<%=m.text %>
+
+  </div>
+<%end%>

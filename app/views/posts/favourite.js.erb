@@ -1,0 +1,5 @@
+<%if @favourite_check.exists?%>
+  document.getElementById("fav<%=params[:id]%>").innerHTML= 'Unfavourites';
+<%else%>
+  document.getElementById("fav<%=params[:id]%>").innerHTML= 'favourites';
+<%end%>

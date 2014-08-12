@@ -1,0 +1,10 @@
+<div class='page-header'>
+  <h1> Your Followers </h1>
+</div>
+<table>
+  <% @followers.each do |follow| %>
+    <tr>
+      <td><%= follow.name %></td>
+    </tr>
+  <% end %>
+</table>

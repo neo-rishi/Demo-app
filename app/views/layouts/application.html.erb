@@ -5,26 +5,56 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <script type="text/javascript">
 
+    </script>
   </head>
   <body>
+    <div class= 'navbar navbar-default navbar-fixed-top ' >
 
-  	<div >
-  		<%if session[:email].blank?%>
-  			<%= link_to 'Sign Up', new_user_path, class: "btn btn-primary pos_fixed1" %>
-  			<%= link_to 'Sign In', signin_users_path, class: "btn btn-primary  pos_fixed"%>
-  		<%else%>
-        <input type="text" value=<%=session[:email]%> readonly class="btn btn-primary pos_fixed1"/>
-  			<%= link_to 'Sign out', logout_users_path, class: "btn btn-primary pos_fixed" %>
-  		<%end%>
-  	</div>
-    <% if flash[:notice] %>
-      <div class="notice"><%= flash[:notice] %></div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="notice"><%= flash[:alert] %></div>
-    <% end %>
-  <%= yield %>
+        <% if session[:id].blank? %>
+          <div class='pull-right'>
+            <%= link_to 'Sign Up', new_user_path, class: "btn btn-primary navbar-btn" %>
+            <%= link_to 'Sign In', signin_users_path, class: "btn btn-primary navbar-btn"%>
+          </div>
+      <% else %>
 
+        <div style="margin-left: 56%;">
+          <ul class="nav navbar-nav container" >
+            <li> <%= link_to 'Follower', followers_users_path, class: "btn btn-default-lg navbar-btn" %></li>
+            <li> <%= link_to 'Followings', followings_users_path, class: "btn btn-default-lg navbar-btn" %> </li>
+            <li> <%= link_to 'Post', posts_path, class: "btn btn-default-lg navbar-btn" %></li>
+            <li> <%= link_to 'favourite', favourite_show_users_path, class: "btn btn-default-lg navbar-btn" %></li>
+            <li> <%= link_to 'Users', follow_users_path, class: "btn btn-default-lg navbar-btn" %></li>
+            <li class="dropdown home-head">
+              <a id="drop4" data-toggle="dropdown" href="#"> Home <span class="caret"></span></a>
+                <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4" style="min-width: 127px;">
+                  <li role="presentation"><%= link_to current_user[:name], posts_path(current_user.id), class: "btn btn-default-lg navbar-btn" %></li>
+                  <li role="presentation"><%= link_to "Message",  new_messages_users_path, class: "btn btn-default-lg navbar-btn" %></li>
+                  <li role="presentation"><%= link_to "Update Profile",  update_profile_user_path(current_user.id), class: "btn btn-default-lg navbar-btn" %></li>
+                  <li role="presentation"><%= link_to "Change Password",  change_password_user_path(current_user.id), class: "btn btn-default-lg navbar-btn" %></li>
+                  <li role="presentation" class="divider"></li>
+                  <li role="presentation"> <%= link_to 'Sign out', logout_users_path, class: "btn btn-default-lg navbar-btn" %></li>
+                </ul>
+            </li>
+            <li style="margin-top:20px;">
+              <%begin%>
+                <%= image_tag current_user.profile.image.url, size: "60x40" %>
+              <%rescue%>
+              <%end%>
+            </li>
+          </ul>
+        </div>
+      <%end%>
+    </div>
+    <div class='container'>
+      <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %></div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="notice"><%= flash[:alert] %></div>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>

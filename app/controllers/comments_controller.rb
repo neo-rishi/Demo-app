@@ -1,37 +1,20 @@
 class CommentsController < ApplicationController
-  def index
-
-  end
-
-  def new
-
-  end
-
+  #create comments
   def create
-
     @post =  Post.find(params[:post_id])
-    @comment = @post.comments.build(params_comment)
-    if @comment.save
-       redirect_to @post, notice: 'Comment was added.'
-    else
-       redirect_to @post, notice: 'Comment not added.'
+    @comment = @post.comments.build(params_comment.merge(user_id: current_user.id))
+
+    respond_to do |format|
+      if @comment.save
+         format.html {redirect_to @post, notice: 'Comment was added.'}
+         format.json {render json: 'create'}
+         format.js
+      else
+         format.html {redirect_to @post, notice: 'Comment not added.'}
+         format.json {render 'create', notice: 'Comment not added.'}
+         format.js
+      end
     end
-  end
-
-  def show
-
-  end
-
-  def edit
-
-  end
-
-  def update
-
-  end
-
-  def destroy
-
   end
 
   private

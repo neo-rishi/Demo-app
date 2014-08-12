@@ -1,0 +1,70 @@
+<div class='page-header'>
+  <h1> Create Your New Account </h1>
+</div>
+<%=form_for (@user),class:"form-signin", :html => { :multipart => true } do |f| %>
+	<% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<table>
+		<tr>
+			<td><%=f.label :Name%></td>
+			<td><%=f.text_field :name, class: "form-control"%></td>
+		</tr>
+    <tr>
+      <td><%=f.label :Email%></td>
+      <td><%=f.email_field :email, class: "form-control"%></td>
+    </tr>
+    <tr>
+      <td><%=f.label :Password%></td>
+      <td><%=f.password_field :password, class: "form-control"%></td>
+    </tr>
+    <tr>
+      <td><%=f.label :Conform_Password%></td>
+      <td><%=f.password_field :password, class: "form-control"%></td>
+    </tr>
+    <%= f.fields_for :profile, :html => { :multipart => true } do |s| %>
+      <tr>
+      <td><%=s.label :LastName%></td>
+      <td><%=s.text_field :lastName, class: "form-control"%></td>
+    </tr>
+      <tr>
+        <td><%=s.label :Date_Of_Birth, class: "form-control"%></td>
+        <td><%=s.date_field :dob, class: "form-control"%></td>
+      </tr>
+      <tr>
+        <td><%=s.label :Gender%></td>
+        <td><%=s.label :Male%><%= s.radio_button 'gender', 'male'%>
+            <%=s.label 'Female'%><%= s.radio_button 'gender', 'female'%>
+        </td>
+      </tr>
+      <tr>
+        <td><%=s.label :Country%></td>
+        <td><%=s.text_field :country, class: "form-control"%></td>
+      </tr>
+      <tr>
+        <td><%=s.label :Zip%></td>
+        <td><%=s.text_field :zip,class: "form-control"%></td>
+      </tr>
+      <tr>
+        <td><%=s.label :Mobile%></td>
+        <td><%=s.text_field :mobile, class: "form-control"%></td>
+      </tr>
+      <tr>
+        <td><%=s.label :Image%></td>
+        <td><%=s.file_field :image, class: "form-control"%></td>
+      </tr>
+    <%end%>
+    <tr>
+        <td></td>
+        <td colspan="2"><%=f.submit class:"btn btn-lg btn-primary btn-block"%></td>
+    </tr>
+  </table>
+<%end%>
+
