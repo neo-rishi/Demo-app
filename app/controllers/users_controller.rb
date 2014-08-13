@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
 	before_action :user_params, only: [:create]
   before_action :authenticate, except: [:create, :login, :new, :signin]
-  session ={id: ''}
+  session ={id: ''} #It is hold session
   def index
     @users = User.all
     @users_id = current_user.users_followings.pluck(:follower_id)
   end
-
+#create new user profile
   def new
   	@user = User.new
     @user.build_profile
