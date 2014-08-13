@@ -40,6 +40,7 @@ gem 'paperclip', '~> 3.0'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem 'pg'
 gem 'pry'
 group :development do
   #gem "better_errors"
