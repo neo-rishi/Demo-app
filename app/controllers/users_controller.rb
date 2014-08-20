@@ -1,43 +1,12 @@
 class UsersController < ApplicationController
 	before_action :user_params, only: [:create]
-  before_action :authenticate, except: [:create, :login, :new, :signin]
+  before_action :authenticate_user!, except: [:create, :login, :new, :signin]
   session ={id: ''} #It is hold session
   def index
     @users = User.all
     @users_id = current_user.users_followings.pluck(:follower_id)
   end
-#create new user profile
-  def new
-  	@user = User.new
-    @user.build_profile
-  end
-#use for siginup page create user
-  def create
-    	@user = User.new(user_params)
-    	if @user.save
-        session[:id] = @user.id
-        #TODO Display notice on view
-        flash[:notice] = "You are loged in"
-    		redirect_to posts_path
-    	else
-    		render 'new'
-    	end
-  end
-  #update user profile
-  def edit
-    @user = current_user
-    @user.profile
-  end
-  #update user field
-  def update
-    @user = current_user
 
-   if @user.update(user_params)
-     redirect_to posts_path
-   else
-     render 'edit'
-   end
-  end
 #update profile information
   def update_profile
     if current_user.profile.present?
@@ -82,7 +51,7 @@ class UsersController < ApplicationController
   end
   # use for Logout
   def logout
-    session[:id]=''
+    session[:id] = ''
     flash[:notice] = "You are loged out"
     redirect_to signin_users_path
 
@@ -112,7 +81,7 @@ class UsersController < ApplicationController
 
   #show all user follower
   def followers
-      @followers = current_user.followers
+    @followers = current_user.followers
   end
   #show all users followings
   def followings

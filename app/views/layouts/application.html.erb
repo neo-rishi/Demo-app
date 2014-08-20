@@ -12,13 +12,7 @@
   <body>
     <div class= 'navbar navbar-default navbar-fixed-top ' >
 
-        <% if session[:id].blank? %>
-          <div class='pull-right'>
-            <%= link_to 'Sign Up', new_user_path, class: "btn btn-primary navbar-btn" %>
-            <%= link_to 'Sign In', signin_users_path, class: "btn btn-primary navbar-btn"%>
-          </div>
-      <% else %>
-
+      <% if user_signed_in? %>
         <div style="margin-left: 56%;">
           <ul class="nav navbar-nav container" >
             <li> <%= link_to 'Follower', followers_users_path, class: "btn btn-default-lg navbar-btn" %></li>
@@ -32,22 +26,27 @@
                   <li role="presentation"><%= link_to current_user[:name], posts_path(current_user.id), class: "btn btn-default-lg navbar-btn" %></li>
                   <li role="presentation"><%= link_to "Message",  new_messages_users_path, class: "btn btn-default-lg navbar-btn" %></li>
                   <li role="presentation"><%= link_to "Update Profile",  update_profile_user_path(current_user.id), class: "btn btn-default-lg navbar-btn" %></li>
-                  <li role="presentation"><%= link_to "Change Password",  change_password_user_path(current_user.id), class: "btn btn-default-lg navbar-btn" %></li>
+                  <li role="presentation"><%= link_to "Change Password",  edit_user_registration_path, class: "btn btn-default-lg navbar-btn" %></li>
                   <li role="presentation" class="divider"></li>
-                  <li role="presentation"> <%= link_to 'Sign out', logout_users_path, class: "btn btn-default-lg navbar-btn" %></li>
+                  <li role="presentation"> <%= link_to 'Sign out',  destroy_user_session_path, :method => :delete, class: "btn btn-default-lg navbar-btn" %></li>
                 </ul>
             </li>
             <li style="margin-top:20px;">
               <%begin%>
                 <%= image_tag current_user.profile.image.url, size: "60x40" %>
-              <%rescue%>
-              <%end%>
+              <% rescue %>
+              <% end %>
             </li>
           </ul>
         </div>
+      <% else %>
+        <div class='pull-right'>
+            <%= link_to 'Sign Up',  new_user_registration_path, class: "btn btn-primary navbar-btn" %>
+            <%= link_to 'Sign In',  user_session_path, class: "btn btn-primary navbar-btn"%>
+        </div>
       <%end%>
     </div>
-    <div class='container'>
+    <div class='container' style="padding-top:20px;">
       <% if flash[:notice] %>
         <div class="notice"><%= flash[:notice] %></div>
       <% end %>

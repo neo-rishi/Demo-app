@@ -4,25 +4,25 @@
 </div>
 <div class='col-sm-offset-2 col-sm-8'>
   <table class="table">
-    <%@users.each do |user|%>
+    <% @users.each do |user| %>
       <%if user.id ==current_user[:id]%>
-      <%else%>
+      <% else %>
       <tr>
-          <% if user.profile.present?%>
-            <td><%= image_tag user.profile.image.url, size: "60x40"%></td>
-          <%else%>
-            <td><%= image_tag "default.jpg", size: "60x40"%></td>
-          <%end%>
-          <td><%=user.name%></td>
+          <% if user.profile.present? %>
+            <td><%= image_tag user.profile.image.url, size: "60x40" %></td>
+          <% else %>
+            <td><%= image_tag "default.jpg", size: "60x40" %></td>
+          <% end %>
+          <td><%= user.name %></td>
           <%if user.id.present? %>
-            <%if @users_id.include?(user.id)%>
+            <% if @users_id.include?(user.id) %>
               <td><%= link_to 'Added', follow_unfollow_user_path(user.id), class: "btn btn-default-sm", id: user.id %></td></td>
-            <%else%>
+            <% else %>
                 <td> <%= link_to 'follow', follow_unfollow_user_path(user.id), class: "btn btn-default-sm", id: user.id %></td>
-            <%end%>
+            <% end %>
           <% end %>
         </tr>
-      <%end%>
-    <%end%>
+      <% end %>
+    <% end %>
   </table>
 </div>

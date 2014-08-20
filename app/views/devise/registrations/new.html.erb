@@ -1,0 +1,60 @@
+<h2>Sign up</h2>
+<% resource.build_profile %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+  <table>
+      <tr>
+        <td><%=f.label :Name%></td>
+        <td><%=f.text_field :name, class: "form-control"%></td>
+      </tr>
+      <tr>
+        <td><%=f.label :Email%></td>
+        <td><%=f.email_field :email, autofocus: true, class: "form-control"%></td>
+      </tr>
+      <tr>
+        <td><%=f.label :Password%></td>
+        <td><%=f.password_field :password, autocomplete: "off", class: "form-control"%></td>
+      </tr>
+      <tr>
+        <td><%=f.label :Conform_Password%></td>
+        <td><%=f.password_field :password_confirmation, autocomplete:"off", class: "form-control"%></td>
+      </tr>
+      <%= f.fields_for :profile, :html => { :multipart => true } do |s| %>
+        <tr>
+        <td><%=s.label :LastName%></td>
+        <td><%=s.text_field :lastName, class: "form-control"%></td>
+      </tr>
+        <tr>
+          <td><%=s.label :Date_Of_Birth%></td>
+          <td><%=s.date_field :dob, class: "form-control"%></td>
+        </tr>
+        <tr>
+          <td><%=s.label :Gender%></td>
+          <td><%=s.label :Male%><%= s.radio_button 'gender', 'male'%>
+              <%=s.label 'Female'%><%= s.radio_button 'gender', 'female'%>
+          </td>
+        </tr>
+        <tr>
+          <td><%=s.label :Country%></td>
+          <td><%=s.text_field :country, class: "form-control"%></td>
+        </tr>
+        <tr>
+          <td><%=s.label :Zip%></td>
+          <td><%=s.text_field :zip,class: "form-control"%></td>
+        </tr>
+        <tr>
+          <td><%=s.label :Mobile%></td>
+          <td><%=s.text_field :mobile, class: "form-control"%></td>
+        </tr>
+        <tr>
+          <td><%=s.label :Image%></td>
+          <td><%=s.file_field :image, class: "form-control"%></td>
+        </tr>
+      <% end %>
+      <tr>
+          <td></td>
+          <td colspan="2"><%=f.submit class:"btn btn-lg btn-primary btn-block"%></td>
+      </tr>
+    </table>
+  <%end%>
+<%= render "devise/shared/links" %>

@@ -1,18 +1,4 @@
-<div class="page-header">
-  <%=form_for (@post) do |f|%>
-    <table>
-      <tr>
-        <td><%=f.label 'title'%></td>
-        <td>&nbsp;&nbsp;<%=f.text_area :title %></td>
-        <td>&nbsp;&nbsp;&nbsp;<%=f.submit class: "btn btn-primary btn-sm", id: "post_new"%></td>
-    </tr>
-    </table>
-  <%end%>
-</div>
-<div id="allpost">
-<table id="allpost">
-  <% @posts.each do |post| %>
-    <tr>
+$('#allpost').prepend(<tr>
       <td>
         <%= link_to 'Up', post_vote_up_post_path(post.id), title: "This post is useful", id: "vote#{post.id}", name: 'up' %><br>
         <span id="<%=post.id %>"><%=post.vote %>
@@ -34,10 +20,4 @@
         </blockquote>
       </td>
     </tr>
-  <% end %>
-</table>
-</div>
-
-
-
-
+    );

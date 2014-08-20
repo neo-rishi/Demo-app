@@ -46,7 +46,9 @@ group :development do
   #gem "better_errors"
   #gem "binding_of_caller"
 end
-
-group :production do
-  gem 'therubyracer'
-end
+#use for facebook device integriation
+gem 'omniauth-facebook'
+#gem for device
+gem 'devise'
+#maile gem
+gem 'mail'

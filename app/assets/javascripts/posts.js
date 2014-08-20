@@ -10,6 +10,14 @@ $(document).on('ready page:load', function(){
     $.post( $("#new_comment").attr('action'),datastring,function(data,status,xhr){}, "script"
     );
   });
+
+  $("#post_new").click(function(event){
+    event.preventDefault();
+    var datastring = $("#new_post").serialize();
+    $.post( $("#new_post").attr('action'),datastring,function(data,status,xhr){}, "script"
+    );
+  });
+
   $("#hideDiv").click(function(){
 
     $("#div1").css({ display: "none"});

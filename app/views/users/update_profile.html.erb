@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <%=form_tag update_profile_method_user_path,:multipart => true, id: 'formprofileupdate', class:"form-signin", method: :post do %>
+  <%= form_tag update_profile_method_user_path,:multipart => true, id: 'formprofileupdate', class:"form-signin", method: :post do %>
      <h2 class="form-signin-heading">Profile</h2>
     <table>
       <tr>
@@ -20,14 +20,14 @@
         <td><%=text_field_tag :zip,@profile.zip, class: "form-control", placeholder: "Zip"%></td>
       </tr>
       <tr>
-        <td><%=text_field_tag :mobile,@profile.mobile, class: "form-control", placeholder: "Mobile"%></td>
+        <td><%=text_field_tag :mobile,@profile.mobile, class: "form-control", placeholder: "Mobile" %></td>
       </tr>
       <tr>
-        <td><%=file_field_tag :image, class: "form-control", placeholder: "Image"%></td>
+        <td><%=file_field_tag :image, class: "form-control", placeholder: "Image" %></td>
       </tr>
       <tr>
-        <td><%=submit_tag 'Update', class:"btn btn-lg btn-primary btn-block", id: 'profileupdate'%></td>
+        <td><%= submit_tag 'Update', class:"btn btn-lg btn-primary btn-block", id: 'profileupdate' %></td>
       </tr>
     </table>
-  <%end%>
+  <% end %>
 </div>

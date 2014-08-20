@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
 	before_action :set_post, only: [:show, :edit, :update, :destroy]
-	before_action :authenticate
 	#show all users post that folloing by current user
 	def index
 		@post = Post.new
@@ -13,10 +12,13 @@ class PostsController < ApplicationController
 	#create new post
 	def create
 		@post = current_user.posts.build(params_post)
-		if @post.save!
-			redirect_to posts_path
-		else
-			render 'new'
+		respond_to do |format|
+			if @post.save
+				format.js
+				#redirect_to posts_path
+			else
+				render 'new'
+			end
 		end
 	end
 	#show your post and create comment

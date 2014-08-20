@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  root 'welcome#index'
+  devise_for :users
+  root 'posts#index'
   resources :users do
     member do
       get 'follow_unfollow'
@@ -27,13 +28,8 @@ Rails.application.routes.draw do
       get 'post_vote_down'
       get 'favourite'
     end
-    collection do
-
-    end
     resources :comments, only: [:create]
   end
-
-
   resources :profile
 
 
