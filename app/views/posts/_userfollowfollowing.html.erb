@@ -1,0 +1,30 @@
+<div style="float:right;width:21%;margin-right:4%;height:400px;">
+  <div class="flex-module">
+    <div class="flex-module-header">
+      <h3 style="display: inline-block;">Who to follow</h3>
+       <%=link_to "Refresh", user_follow_refresh_posts_path, id: "user_follow_refresh"%>
+        <%= link_to 'view all', follow_users_path %>
+    </div>
+    <div id="user_follow_div">
+      <% @follows.each do |user|%>
+        <div id="show_follow_user">
+          <table >
+            <tr id ="row-<%=user.id%>">
+              <td>
+                <%=link_to user_path(user) do%>
+                  <% if user.profile.present? %>
+                    <%= image_tag user.profile.image.url, size: "48x48" %>
+                  <% else %>
+                    <%= image_tag "default.jpg", size: "48x48" %>
+                  <% end %>
+                <% end %>
+              </td>
+              <td class="fullnamefollows" style="padding-left: 10px;" valign="top"><%=link_to user.name.upcase, user_path(user)%> <br><%= link_to 'follow', follow_unfollow_user_path(user), class: "btn btn-default btn-sm", role: "button", id: user.id, style:"width:70px; margin-top:8px;" %></td>
+            </tr>
+          </table>
+        </div>
+        <br>
+      <% end %>
+    </div>
+  </div>
+</div>

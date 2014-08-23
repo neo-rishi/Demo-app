@@ -4,6 +4,7 @@
     <title>Users</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "autocomplete-rails.js"%>
     <%= csrf_meta_tags %>
     <script type="text/javascript">
 
@@ -13,29 +14,27 @@
     <div class= 'navbar navbar-default navbar-fixed-top ' >
 
       <% if user_signed_in? %>
-        <div style="margin-left: 56%;">
+        <div style="margin-left: 60%;">
           <ul class="nav navbar-nav container" >
-            <li> <%= link_to 'Follower', followers_users_path, class: "btn btn-default-lg navbar-btn" %></li>
-            <li> <%= link_to 'Followings', followings_users_path, class: "btn btn-default-lg navbar-btn" %> </li>
+            <li style="margin-top:20px;"><%= autocomplete_field_tag :user_name, "",autocomplete_user_name_users_path %>
+            </li>
             <li> <%= link_to 'Post', posts_path, class: "btn btn-default-lg navbar-btn" %></li>
             <li> <%= link_to 'favourite', favourite_show_users_path, class: "btn btn-default-lg navbar-btn" %></li>
-            <li> <%= link_to 'Users', follow_users_path, class: "btn btn-default-lg navbar-btn" %></li>
             <li class="dropdown home-head">
               <a id="drop4" data-toggle="dropdown" href="#"> Home <span class="caret"></span></a>
                 <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4" style="min-width: 127px;">
-                  <li role="presentation"><%= link_to current_user[:name], posts_path(current_user.id), class: "btn btn-default-lg navbar-btn" %></li>
+                  <li role="presentation"><%= link_to current_user[:name], user_path(current_user), class: "btn btn-default-lg navbar-btn" %></li>
                   <li role="presentation"><%= link_to "Message",  new_messages_users_path, class: "btn btn-default-lg navbar-btn" %></li>
-                  <li role="presentation"><%= link_to "Update Profile",  update_profile_user_path(current_user.id), class: "btn btn-default-lg navbar-btn" %></li>
+                  <li role="presentation"><%= link_to "Update Profile",  update_profile_user_path(current_user), class: "btn btn-default-lg navbar-btn" %></li>
                   <li role="presentation"><%= link_to "Change Password",  edit_user_registration_path, class: "btn btn-default-lg navbar-btn" %></li>
                   <li role="presentation" class="divider"></li>
                   <li role="presentation"> <%= link_to 'Sign out',  destroy_user_session_path, :method => :delete, class: "btn btn-default-lg navbar-btn" %></li>
                 </ul>
             </li>
             <li style="margin-top:20px;">
-              <%begin%>
-                <%= image_tag current_user.profile.image.url, size: "60x40" %>
-              <% rescue %>
-              <% end %>
+              <span  data-toggle="modal" data-target="#myModal"
+               id="postButton" title="Compose new tweet"><%= image_tag 'tweet(3).jpg', size: "60x40" %>
+              </span>
             </li>
           </ul>
         </div>
@@ -46,7 +45,7 @@
         </div>
       <%end%>
     </div>
-    <div class='container' style="padding-top:20px;">
+    <div style="padding-top:20px;">
       <% if flash[:notice] %>
         <div class="notice"><%= flash[:notice] %></div>
       <% end %>

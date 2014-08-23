@@ -1,43 +1,32 @@
-<div class="page-header">
-  <%=form_for (@post) do |f|%>
-    <table>
-      <tr>
-        <td><%=f.label 'title'%></td>
-        <td>&nbsp;&nbsp;<%=f.text_area :title %></td>
-        <td>&nbsp;&nbsp;&nbsp;<%=f.submit class: "btn btn-primary btn-sm", id: "post_new"%></td>
-    </tr>
-    </table>
-  <%end%>
-</div>
-<div id="allpost">
-<table id="allpost">
-  <% @posts.each do |post| %>
-    <tr>
-      <td>
-        <%= link_to 'Up', post_vote_up_post_path(post.id), title: "This post is useful", id: "vote#{post.id}", name: 'up' %><br>
-        <span id="<%=post.id %>"><%=post.vote %>
-        </span>
-        <br>
-        <%= link_to 'Down', post_vote_down_post_path(post.id), title: "This post not useful", id: "vote#{post.id}", name: 'down' %>
-
-      </td>
-      <td>
-        <blockquote>
-          <p><%= post.title %></p>
-          <p><small>posted by <%= post.user.name%></small></p><br>
-          <% if @check_fav.include?(post.id) %>
-          <div id="fav"><%=link_to 'Unfavourite', favourite_post_path(post.id), class:"btn btn-default btn-xs",id: "fav#{post.id}"%></div>
-          <% else %>
-            <div id="fav"><%=link_to 'favourite', favourite_post_path(post.id), class:"btn btn-default btn-xs",id: "fav#{post.id}"%>
-            </div>
-          <% end %>
-        </blockquote>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<div id="main">
+  <%=render 'userprofile'%>
+  <div id="allpost" style="float:left;width:46%;">
+    <div class="headeinner">
+      <h2>Tweets</h2>
+    </div>
+    <div id="allpostshow">
+    <%=render partial: "post", collection: @posts%>
+  </div>
+  </div>
+    <%=render "userfollowfollowing"%>
 </div>
 
-
-
-
+<div class="modal" id="myModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:hidden">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span id="closeModelX" class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel" style="text-align: center;">Compose New Tweet</h4>
+      </div>
+      <%=form_for (@post) do |f|%>
+        <div class="modal-body">
+          <%=f.text_area :title, style: "width:560px;height:100px;resize: none;"%>
+        </div>
+        <div class="modal-footer">
+          <button type="button"  id ="closeModelB" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%=f.submit :Tweet, class:"btn btn-primary", id:"post_new" %>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>

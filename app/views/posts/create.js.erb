@@ -1,23 +1,2 @@
-$('#allpost').prepend(<tr>
-      <td>
-        <%= link_to 'Up', post_vote_up_post_path(post.id), title: "This post is useful", id: "vote#{post.id}", name: 'up' %><br>
-        <span id="<%=post.id %>"><%=post.vote %>
-        </span>
-        <br>
-        <%= link_to 'Down', post_vote_down_post_path(post.id), title: "This post not useful", id: "vote#{post.id}", name: 'down' %>
-
-      </td>
-      <td>
-        <blockquote>
-          <p><%= post.title %></p>
-          <p><small>posted by <%= post.user.name%></small></p><br>
-          <% if @check_fav.include?(post.id) %>
-          <div id="fav"><%=link_to 'Unfavourite', favourite_post_path(post.id), class:"btn btn-default btn-xs",id: "fav#{post.id}"%></div>
-          <% else %>
-            <div id="fav"><%=link_to 'favourite', favourite_post_path(post.id), class:"btn btn-default btn-xs",id: "fav#{post.id}"%>
-            </div>
-          <% end %>
-        </blockquote>
-      </td>
-    </tr>
-    );
+$('#allpostshow').prepend("<%= escape_javascript render(partial: 'post', locals: {post: @post }) %>");
+alert("lower");

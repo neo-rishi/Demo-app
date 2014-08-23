@@ -1,0 +1,10 @@
+<div id="main">
+  <%=render '/posts/userprofile'%>
+  <div id="allpost" style="float:left;width:46%;">
+    <div class="headeinner">
+      <h2>Tweets</h2>
+    </div>
+    <%=render partial: "/posts/post", collection: @posts%>
+  </div>
+    <%=render "/posts/userfollowfollowing"%>
+</div>

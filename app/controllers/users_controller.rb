@@ -1,12 +1,28 @@
 class UsersController < ApplicationController
+  autocomplete :user, :name
 	before_action :user_params, only: [:create]
   before_action :authenticate_user!, except: [:create, :login, :new, :signin]
+
   session ={id: ''} #It is hold session
   def index
     @users = User.all
     @users_id = current_user.users_followings.pluck(:follower_id)
   end
-
+#show user profile
+def show
+  @user = User.find(params[:id])
+  @user_name = @user
+  @posts = @user.posts
+  @post = Post.new
+  @check_fav = @user_name.favourites.pluck(:post_id)
+  users = @user_name.followings.pluck(:id)
+  users << @user_name[:id]
+  @tweets = @user_name.posts.count
+  @followings_count = @user_name.followings.count
+  @followings = @user_name.followings.last(5)
+  @follows = User.where("id NOT IN (?)", users).first(5)
+  @followers = @user.followers.last(5)
+end
 #update profile information
   def update_profile
     if current_user.profile.present?
@@ -30,6 +46,14 @@ class UsersController < ApplicationController
         format.html { redirect_to posts_path, notice: 'Profile was successfully updated.' }
       end
     end
+  end
+
+  def search_user
+   @users = User.where("name like ?", "%#{params[:data]}%")
+    respond_to do |format |
+      format.js
+    end
+
   end
   # use for signin page
   def signin
@@ -79,6 +103,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def autocomplete_user_name
+    term = params[:term]
+    brand_id = params[:brand_id]
+    country = params[:country]
+    users = User.where('name LIKE ?',"%#{term}%").order(:name).all
+    render :json => users.map { |user| {:id => user.id, :label => user.name, :value => user.name} }
+  end
   #show all user follower
   def followers
     @followers = current_user.followers
@@ -92,7 +123,7 @@ class UsersController < ApplicationController
   def favourite_show
     @favourites = current_user.favourites.pluck(:post_id)
     @posts = Post.where(id: @favourites)
-
+    # TODO check it
   end
   #show users all private message
   def new_messages

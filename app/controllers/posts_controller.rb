@@ -7,11 +7,19 @@ class PostsController < ApplicationController
 		users = current_user.followings.pluck(:id)
 		users << current_user[:id]
 		@posts = Post.where(user_id: users).order('id DESC').includes(:user)
+		@tweets = current_user.posts.count
+		@followings_count = current_user.followings.count
+		@followings = current_user.followings.last(5)
+		@follows = User.where("id NOT IN (?)", users).first(5)
+		@followers = current_user.followers.last(5)
+		@user_name = current_user
 	end
 
 	#create new post
 	def create
 		@post = current_user.posts.build(params_post)
+		@check_fav = current_user.favourites.pluck(:post_id)
+		@user_name = current_user
 		respond_to do |format|
 			if @post.save
 				format.js
@@ -62,6 +70,22 @@ class PostsController < ApplicationController
 			@post.save
 			format.js
 		end
+	end
+	#refresh user profile in post index page
+	def user_profile_refresh
+			@followings = current_user.followings.last(5)
+			respond_to do |format|
+				format.js
+			end
+	end
+
+	def user_follow_refresh
+		users = current_user.followings.pluck(:id)
+		users << current_user[:id]
+		@follows = User.where("id NOT IN (?)", users).first(5)
+			respond_to do |format|
+				format.js
+			end
 	end
 	#use for favourites post
 	def favourite

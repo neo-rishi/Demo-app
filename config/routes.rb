@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'posts#index'
   resources :users do
+    get :autocomplete_user_name, :on => :collection
     member do
       get 'follow_unfollow'
       get 'change_password'
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
       get 'favourite_show'
       get 'new_messages'
       post 'messages'
+      post 'search_user'
     end
   end
   resources :posts, except: [:new] do
@@ -27,6 +29,10 @@ Rails.application.routes.draw do
       get 'post_vote_up'
       get 'post_vote_down'
       get 'favourite'
+    end
+    collection do
+       post 'user_profile_refresh'
+       post 'user_follow_refresh'
     end
     resources :comments, only: [:create]
   end

@@ -1,0 +1,79 @@
+<div id="yourstatus" style="float:left; margin-left:5%;margin-right:2%; width:20%;"
+    class="DashboardProfileCard module">
+    <div style="width:100%;height:288px;">`
+      <%=link_to image_tag('default_profile_6_bigger.png',:alt =>  "alt text", class:"DashboardProfileCard-avatarImage"),user_path(@user_name.id), class: "DashboardProfileCard-bg u-bgUserColor u-block"%>
+      <div class="DashboardProfileCard-userFields ">
+        <div class="DashboardProfileCard-name">
+          <%=link_to @user_name.name, user_path(@user_name), class:"textInheritColor"%>
+        </div>
+        <span>
+           <%=link_to @user_name.email, user_path(@user_name), class:"screennameLink"%>
+        </span>
+          <div style="width:100%;" class="userprofilestatus ">
+            <div class=" col-md-6 ">
+              <%=link_to  user_path(@user_name), class:"screennameLink", style:"TEXT-DECORATION: NONE", title: " #{@tweets}Tweets" do %>
+                <span class="statelable" STYLE="TEXT-DECORATION: NONE">POSTS</span><BR>
+                <span STYLE="TEXT-DECORATION: NONE; color: #0084B4 !important;" class="statValue"><%=@tweets%></span>
+              <% end %>
+            </div>
+            <div class="col-md-6">
+              <%=link_to  user_path(@user_name), class:"screennameLink", style:"TEXT-DECORATION: NONE", title: " #{@followings}Tweets" do %>
+                <span class="statelable" STYLE="TEXT-DECORATION: NONE">FOLLOWINGS</span><BR>
+                <span STYLE="TEXT-DECORATION: NONE; color: #0084B4 !important;" class="statValue"><%=@followings_count%></span>
+              <% end %>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div>
+      <div class="flex-module">
+        <div class="flex-module-header">
+          <h3 style="display: inline-block;">Followings</h3>
+            <%=link_to 'Refresh', user_profile_refresh_posts_path, class: 'btn-link', id:"refresh_followings"%>
+            <%= link_to 'view all', followings_users_path %>
+        </div>
+        <div width:100% id="refreshfollowingsdiv">
+            <% @followings.each do |follow|%>
+              <ul class="nav nav-pills">
+                <li style="padding:0px;">
+                  <%=link_to user_path(follow) do %>
+                    <% if follow.profile.present? %>
+                       <%= image_tag follow.profile.image.url, size: "48x48"%>
+                     <% else %>
+                      <%= image_tag "default.jpg", size: "48x48" %>
+                    <% end %>
+                    <span class="fullname"><%=follow.name.upcase%><span>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="flex-module">
+        <div class="flex-module-header">
+          <h3 style="display: inline-block;">Followers</h3>
+            <button type= "button" class="btn-link">Refresh</button>
+            <%= link_to 'view all',  followers_users_path %>
+        </div>
+        <div width:100%>
+            <% @followers.each do |follow|%>
+              <ul class="nav nav-pills">
+                <li style="padding:0px;">
+                  <%=link_to user_path(follow) do %>
+                    <% if follow.profile.present? %>
+                       <%= image_tag follow.profile.image.url, size: "48x48"%>
+                     <% else %>
+                      <%= image_tag "default.jpg", size: "48x48" %>
+                    <% end %>
+                    <span class="fullname"><%=follow.name.upcase%><span>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>

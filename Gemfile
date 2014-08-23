@@ -41,7 +41,11 @@ gem 'paperclip', '~> 3.0'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'pg'
+gem "less-rails"
+gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git', branch: 'bootstrap3'
 gem 'pry'
+gem 'rails4-autocomplete', '~> 1.1.0'
+gem 'jquery-rails'
 group :development do
   #gem "better_errors"
   #gem "binding_of_caller"

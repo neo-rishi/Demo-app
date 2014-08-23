@@ -1,0 +1,5 @@
+<ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="search_users" style="min-width: 127px;">
+  <%@users.each do |user|%>
+     <li role="presentation"><%= link_to user.name, user_path(user), class: "btn btn-default-lg navbar-btn" %></li>
+  <% end %>
+</ul>

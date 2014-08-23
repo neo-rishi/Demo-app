@@ -1,0 +1,59 @@
+<div class="headeinnerdiv" id="div-<%=post.id%>">
+  <div style="height: auto; width:100%;">
+    <div style=" float:left;min-height: 60px; width:10%;">
+      <%=link_to user_path(@user_name) do %>
+        <% if post.user.profile.present? %>
+          <%= image_tag post.user.profile.image.url, size: "48x48",class:"avatarImagediv",style:"" %>
+        <% else %>
+          <%= image_tag "default.jpg", size: "48x48", class:"avatarImagediv",style:"" %>
+        <% end %>
+       <% end %>
+    </div>
+    <div style=" float:right;min-height: 60px; width:90%;">
+      <span><%=link_to post.user.name.upcase, user_path(@user_name), class: "fullname", style: ""%></span>
+      <p><%=post.title%></p>
+    </div>
+  </div>
+  <div class="navbar-header" id="postinfoexpand<%=post.id%>" style="display:none">
+    <ul class="nav navbar-nav container" style="height:60px;">
+      <li style="height:60px;">
+        <%=link_to post_path(post), style: "height:60px;" do %>
+          <p>comments</p>
+          <strong><%= post.comments.count %></strong>
+        <% end %>
+      </li>
+      <li style="height:60px;">
+        <%=link_to post_path(post), style: "height:60px;" do %>
+          <p>Favourites</p>
+          <strong><%= post.favourites.count%></strong>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+  <div style="min-height: auto; width:auto; margin-top:10px;">
+    <i class="glyphicon glyphicon-resize-full btn" id="expand<%=post.id%>"></i>
+    <ul class="nav nav-pills navbar-right" >
+      <li>
+        <%if post.user.id == current_user.id%>
+           <h5> <%=link_to 'delete', post_path(post),
+                    method: :delete, data: { confirm: 'Are you sure?' } ,id: "fav#{post.id}"%>
+        <% end %>
+      </li>
+      <li id="favcheck">
+        <%if @cheack_fav.present?%>
+          <% if @check_fav.include?(post.id) %>
+            <h5> <%=link_to 'Unfavourite', favourite_post_path(post),id: "fav#{post.id}"%></h5>
+          <% else %>
+            <h5><%=link_to 'favourite', favourite_post_path(post),id:"fav#{post.id}"%></h5>
+          <% end %>
+        <% else %>
+           <h5><%=link_to 'favourite', favourite_post_path(post),id:"fav#{post.id}"%></h5>
+        <% end %>
+      </li>
+
+      <li>
+        <h5><%= link_to 'comment',post_path(post), class:"comment"%></h5>
+      </li>
+    </ul>
+  </div>
+</div>
