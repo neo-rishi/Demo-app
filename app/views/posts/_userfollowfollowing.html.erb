@@ -19,7 +19,7 @@
                   <% end %>
                 <% end %>
               </td>
-              <td class="fullnamefollows" style="padding-left: 10px;" valign="top"><%=link_to user.name.upcase, user_path(user)%> <br><%= link_to 'follow', follow_unfollow_user_path(user), class: "btn btn-default btn-sm", role: "button", id: user.id, style:"width:70px; margin-top:8px;" %></td>
+              <td class="fullnamefollows" style="padding-left: 10px;" valign="top"><%=link_to user.profile.name.upcase, user_path(user)%> <br><%= link_to 'follow', follow_unfollow_user_path(user), class: "btn btn-default btn-sm", role: "button", id: user.id, style:"width:70px; margin-top:8px;" %></td>
             </tr>
           </table>
         </div>

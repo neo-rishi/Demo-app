@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   autocomplete :user, :name
-	before_action :user_params, only: [:create]
   before_action :authenticate_user!, except: [:create, :login, :new, :signin]
 
   session ={id: ''} #It is hold session
@@ -28,7 +27,6 @@ end
     if current_user.profile.present?
       @profile = current_user.profile
     else
-     current_user.build_profile.save
      @profile = current_user.profile
     end
   end
@@ -161,11 +159,5 @@ end
       end
     end
   end
-  private
-    def profile_param
-      params.permit(:lastName, :dob, :gender, :country, :zip, :mobile, :image)
-    end
-    def user_params
-      params.require(:user).permit(:name, :email, :password, profile_attributes: [:lastName, :dob, :gender, :country, :zip, :mobile, :image])
-    end
 end
+

@@ -13,7 +13,7 @@
           <% else %>
             <td><%= image_tag "default.jpg", size: "60x40" %></td>
           <% end %>
-          <td><%= user.name %></td>
+          <td><%= user.profile.name %></td>
           <%if user.id.present? %>
             <% if @users_id.include?(user.id) %>
               <td><%= link_to 'Added', follow_unfollow_user_path(user.id), class: "btn btn-default-sm", id: user.id %></td></td>

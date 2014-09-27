@@ -11,22 +11,3 @@
     <%=render "userfollowfollowing"%>
 </div>
 
-<div class="modal" id="myModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:hidden">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span id="closeModelX" class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel" style="text-align: center;">Compose New Tweet</h4>
-      </div>
-      <%=form_for (@post) do |f|%>
-        <div class="modal-body">
-          <%=f.text_area :title, style: "width:560px;height:100px;resize: none;"%>
-        </div>
-        <div class="modal-footer">
-          <button type="button"  id ="closeModelB" class="btn btn-default" data-dismiss="modal">Close</button>
-          <%=f.submit :Tweet, class:"btn btn-primary", id:"post_new" %>
-        </div>
-      <%end%>
-    </div>
-  </div>
-</div>

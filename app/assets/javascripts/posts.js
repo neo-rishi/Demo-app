@@ -23,12 +23,7 @@ $(document).on('ready page:load', function(){
     $("#row-"+id).remove();}
   });
 
-  $("#post_new").click(function(event){
-    event.preventDefault();
-    var datastring = $("#new_post").serialize();
-    $.post( $("#new_post").attr('action'),datastring,function(data,status,xhr){ $('#myModal').modal('toggle')}, "script"
-    );
-  });
+
 
   $("#hideDiv").click(function(){
 
@@ -61,18 +56,18 @@ $(document).on('ready page:load', function(){
     $.post("/users/search_user", {data: datastring },function(data,status,xhr){}, "script");
   });
 
-  $("#postButton").click(function(event){
-    $('#myModel').show();
-    $('#post_title').focus();
-  });
-  $('.close').click(function(event){
-    $('#post_title').focusout();
-    $('#myModel').hide();
-  });
-  $('#closeModelB').click(function(event){
-    $('#post_title').focusout();
-    $('#myModel').hide();
-  });
+  // $("#postButton").click(function(event){
+  //   $('#myModel').show();
+  //   $('#post_title').focus();
+  // });
+  // $('.close').click(function(event){
+  //   $('#post_title').focusout();
+  //   $('#myModel').hide();
+  // });
+  // $('#closeModelB').click(function(event){
+  //   $('#post_title').focusout();
+  //   $('#myModel').hide();
+  // });
 
    $("div i ").click(function(){
      var id = $(this).attr("id")

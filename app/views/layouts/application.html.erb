@@ -6,13 +6,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag "autocomplete-rails.js"%>
     <%= csrf_meta_tags %>
-    <script type="text/javascript">
-
-    </script>
   </head>
   <body>
     <div class= 'navbar navbar-default navbar-fixed-top ' >
-
       <% if user_signed_in? %>
         <div style="margin-left: 60%;">
           <ul class="nav navbar-nav container" >
@@ -45,9 +41,31 @@
         </div>
       <%end%>
     </div>
-    <div style="padding-top:20px;">
+
+    <div class="modal" id="myModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:hidden">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span id="closeModelX" class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel" style="text-align: center;">Compose New Tweet</h4>
+          </div>
+          <%=form_for (Post.new) do |f|%>
+            <div class="modal-body">
+              <%=f.text_area :title, style: "width:560px;height:100px;resize: none;"%>
+            </div>
+            <div class="modal-footer">
+              <button type="button"  id ="closeModelB" class="btn btn-default" data-dismiss="modal">Close</button>
+              <%=f.submit :Tweet, class:"btn btn-primary", id:"post_new" %>
+            </div>
+          <%end%>
+        </div>
+    </div>
+</div>
+    <div style="padding-top:30px;">
       <% if flash[:notice] %>
-        <div class="notice"><%= flash[:notice] %></div>
+        <div class="notice alert alert-success" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <%= flash[:notice] %></div>
       <% end %>
       <% if flash[:alert] %>
         <div class="notice"><%= flash[:alert] %></div>

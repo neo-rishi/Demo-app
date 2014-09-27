@@ -10,11 +10,10 @@
 // about supported directives.
 //
 //= require jquery
-
+// require turbolinks
 //= require jquery_ujs
 //= require jquery-ui.min
 //= require twitter/bootstrap
-//= require turbolinks
 //= require autocomplete-rails
 //= require_tree .
 $(document).ready(function(){
@@ -31,6 +30,14 @@ $(document).ready(function(){
     $('#post_title').focusout();
     $('#myModel').hide();
   });
-
-
+  $("#post_new").click(function(event){
+    event.preventDefault();
+    $('#post_title').focusout();
+    $('#myModel').hide();
+    var datastring = $("#new_post").serialize();
+    $.post( $("#new_post").attr('action'),datastring,function(data,status,xhr){ $('#myModal').modal('toggle')}, "script"
+    );
+  });
 });
+
+

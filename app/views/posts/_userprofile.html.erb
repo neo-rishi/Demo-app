@@ -4,7 +4,7 @@
       <%=link_to image_tag('default_profile_6_bigger.png',:alt =>  "alt text", class:"DashboardProfileCard-avatarImage"),user_path(@user_name.id), class: "DashboardProfileCard-bg u-bgUserColor u-block"%>
       <div class="DashboardProfileCard-userFields ">
         <div class="DashboardProfileCard-name">
-          <%=link_to @user_name.name, user_path(@user_name), class:"textInheritColor"%>
+          <%=link_to @user_name.profile.name, user_path(@user_name), class:"textInheritColor"%>
         </div>
         <span>
            <%=link_to @user_name.email, user_path(@user_name), class:"screennameLink"%>
@@ -42,7 +42,7 @@
                      <% else %>
                       <%= image_tag "default.jpg", size: "48x48" %>
                     <% end %>
-                    <span class="fullname"><%=follow.name.upcase%><span>
+                    <span class="fullname"><%=follow.profile.name.upcase%><span>
                   <% end %>
                 </li>
               </ul>

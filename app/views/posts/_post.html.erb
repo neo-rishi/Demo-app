@@ -10,7 +10,7 @@
        <% end %>
     </div>
     <div style=" float:right;min-height: 60px; width:90%;">
-      <span><%=link_to post.user.name.upcase, user_path(@user_name), class: "fullname", style: ""%></span>
+      <span><%=link_to post.user.profile.name.upcase, user_path(@user_name), class: "fullname", style: ""%></span>
       <p><%=post.title%></p>
     </div>
   </div>

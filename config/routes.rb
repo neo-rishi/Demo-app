@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, controllers: {registrations: 'registrations'}
   root 'posts#index'
   resources :users do
     get :autocomplete_user_name, :on => :collection
@@ -36,7 +36,21 @@ Rails.application.routes.draw do
     end
     resources :comments, only: [:create]
   end
-  resources :profile
+  resources :profiles,except:[:index] do
+    member do
+      get 'edit_address'
+      get 'edit_company'
+      get 'update_address'
+      get 'update_company'
+    end
+    collection do
+      get 'address'
+      post 'create_address'
+      get 'company'
+      post 'create_company'
+    end
+  end
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
