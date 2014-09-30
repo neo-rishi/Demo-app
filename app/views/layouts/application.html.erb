@@ -8,9 +8,9 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class= 'navbar navbar-default navbar-fixed-top ' >
-      <% if user_signed_in? %>
-        <div style="margin-left: 60%;">
+    <% if user_signed_in? %>
+      <div class= 'navbar navbar-default navbar-fixed-top ' style="height:50px;">
+        <div style="margin-left: 60%; margin-top:-10px;">
           <ul class="nav navbar-nav container" >
             <li style="margin-top:20px;"><%= autocomplete_field_tag :user_name, "",autocomplete_user_name_users_path %>
             </li>
@@ -29,18 +29,13 @@
             </li>
             <li style="margin-top:20px;">
               <span  data-toggle="modal" data-target="#myModal"
-               id="postButton" title="Compose new tweet"><%= image_tag 'tweet(3).jpg', size: "60x40" %>
+               id="postButton" title="Compose new tweet"><%= image_tag 'tweet(3).jpg', size: "40x40" %>
               </span>
             </li>
           </ul>
         </div>
-      <% else %>
-        <div class='pull-right'>
-            <%= link_to 'Sign Up',  new_user_registration_path, class: "btn btn-primary navbar-btn" %>
-            <%= link_to 'Sign In',  user_session_path, class: "btn btn-primary navbar-btn"%>
-        </div>
-      <%end%>
-    </div>
+      </div>
+    <%end%>
 
     <div class="modal" id="myModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:hidden">
       <div class="modal-dialog">
@@ -61,7 +56,7 @@
         </div>
     </div>
 </div>
-    <div style="padding-top:30px;">
+    <div style="padding-top:auto;">
       <% if flash[:notice] %>
         <div class="notice alert alert-success" role="alert">
           <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>

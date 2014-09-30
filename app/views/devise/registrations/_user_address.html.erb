@@ -1,0 +1,56 @@
+<%= form_for @address do |f|%>
+  <table>
+    <tr>
+      <td>
+        Address 1
+      </td>
+      <td>
+        <%= f.text_area :first_address%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Address 2
+      </td>
+      <td>
+        <%= f.text_area :second_address%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Country
+      </td>
+      <td>
+        <%= f.text_field :country%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        State
+      </td>
+      <td>
+        <%= f.text_field :state%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        City
+      </td>
+      <td>
+        <%= f.text_field :city%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Zip
+      </td>
+      <td>
+        <%= f.text_field :zip%>
+      </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td colspan="2"><%= f..submit %></td>
+    </tr>
+  </table>
+<% end %>

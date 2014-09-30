@@ -8,11 +8,12 @@ class CommentsController < ApplicationController
       if @comment.save
          format.html {redirect_to @post, notice: 'Comment was added.'}
          format.json {render json: 'create'}
-         format.js
+         format.js {render :nothing => true}
+
       else
          format.html {redirect_to @post, notice: 'Comment not added.'}
          format.json {render 'create', notice: 'Comment not added.'}
-         format.js
+         format.js {render :nothing => true}
       end
     end
   end

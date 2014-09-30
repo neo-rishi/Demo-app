@@ -17,6 +17,7 @@
 //= require autocomplete-rails
 //= require_tree .
 $(document).ready(function(){
+  postGlobal = 0;
   $('#drop4').dropdown();
   $("#postButton").click(function(event){
     $('#myModel').show();
@@ -35,9 +36,26 @@ $(document).ready(function(){
     $('#post_title').focusout();
     $('#myModel').hide();
     var datastring = $("#new_post").serialize();
-    $.post( $("#new_post").attr('action'),datastring,function(data,status,xhr){ $('#myModal').modal('toggle')}, "script"
+    $.post( $("#new_post").attr('action'),datastring,function(data,status,xhr){}, "script"
     );
   });
+  $(".comment").click(function(event){
+    event.preventDefault();
+    postGlobal = $(this).attr('href');
+    $('#post_modal').modal('toggle')
+   });
+
+  $(".new_comment").click(function(event){
+    var text = $('.get_comment').text();
+    $('.get_comment').empty();
+    $.post( '/posts/'+postGlobal+'/comments',{comment: {content: text}},function(data,status,xhr){}, "script"
+    );
+   });
+  $(".read_comment").click(function(event){
+    // event.preventDefault();
+    $('#read_comment_modal').modal('toggle')
+    // $.get('/posts/'+postGlobal+'/read_comments', {}, function(data,status,xhr){}, "script");
+   });
 });
 
 

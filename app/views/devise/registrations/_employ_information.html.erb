@@ -1,0 +1,25 @@
+<%= form_for @employ, do |f| %>
+  <table>
+    <tr>
+      <td>Company Name</td>
+      <td> <%= f.text_field :name%></td>
+    </tr>
+    <tr>
+      <td>Company Location</td>
+      <td> <%= f.text_field :location%></td>
+    </tr>
+
+    <tr>
+      <td>Designation</td>
+      <td> <%= f.text_field :designation%></td>
+    </tr>
+    <tr>
+      <td>Experience</td>
+      <td> <%= f.text_field :experience%></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="2"><%= s.submit %></td>
+    </tr>
+  </table>
+<% end %>

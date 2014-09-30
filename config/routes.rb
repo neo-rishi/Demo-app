@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       get 'post_vote_up'
       get 'post_vote_down'
       get 'favourite'
+      get 'read_comments'
     end
     collection do
        post 'user_profile_refresh'

@@ -31,8 +31,7 @@ class PostsController < ApplicationController
 	end
 	#show your post and create comment
 	def show
-		@post = Post.find(params[:id])
-		@comment = @post.comments.build
+
 	end
 	#update your posts
 	def update
@@ -99,6 +98,13 @@ class PostsController < ApplicationController
 				@favourite.save
 				format.js
 			end
+		end
+	end
+
+	def read_comments
+		@comments = Post.find(params[:id]).comments
+		respond_to do |format|
+			format.js
 		end
 	end
 	private
