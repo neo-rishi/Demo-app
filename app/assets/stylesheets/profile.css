@@ -1,0 +1,120 @@
+.ProfileCanopy {
+  padding-bottom: 60px;
+  height: 175px;
+  position: relative;
+  background-color: #fff;
+  border-bottom: 1px solid #e1e8ed;
+}
+
+.ProfileCanopy-inner {
+  position: relative;
+  width: 100%;
+
+  z-index: 4;
+}
+
+.u-bgUserColor{
+  background-color: #0084B4 !important;
+}
+
+.ProfileCanopy-header {
+  max-width: 2560px;
+  height: 175px;
+  position: relative;
+  z-index: 3;
+  background-color: #63aeee;
+}
+
+.ProfileCanopy-header .AppContainer {
+  height: 100%;
+  position: relative;
+}
+
+.ProfileCanopy-avatar {
+  bottom: -87px;
+  left: 10px;
+  margin-left:8%;
+  position: absolute;
+  z-index: 3;
+}
+
+.ProfileAvatar {
+  background: #fff;
+  border: 5px solid #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 1px rgba(136,153,166,0.15);
+  height: 200px;
+  position: relative;
+  width: 200px;
+  padding: 3px;
+}
+
+.ProfileCanopy-navBar {
+  background-color: #fff;
+  border-bottom: 1px solid #e1e8ed;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 60px;
+}
+
+.Grid {
+  display: block;
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.Grid-cell {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  vertical-align: top;
+  width: 100%;
+}
+
+.u-lg-size3of4{
+  width: 75%!important;
+}
+
+.u-lg-size1of4{
+  width: 25%!important;
+}
+
+.ProfileNav-label {
+  color: #66757f;
+  font-size: 11px;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  display: block;
+  transition: color .15s ease-in-out;
+  }
+.navshift{
+  margin-left: 35px;
+  float:left;
+  display: inline-block;
+}
+
+.ProfileNav-value {
+font-size: 18px;
+padding-top: 3px;
+font-weight: 500;
+color: #0084B4 !important;
+transition: color .15s ease-in-out;
+}
+.u-textCenter {
+  text-align: center!important;
+}
+
+.editfloat{
+  float:right;
+}
+
+.UserActions-editButton {
+  padding-top: 9px;
+  padding-bottom: 9px;
+}

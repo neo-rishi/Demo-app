@@ -1,0 +1,34 @@
+<%= form_for @profile, :html => { :multipart => true } do |s| %>
+  <table>
+      <tr>
+        <td><%=s.label :Name%></td>
+        <td><%=s.text_field :name, class: "form-control"%></td>
+      </tr>
+      <tr>
+        <td><%=s.label :LastName%></td>
+        <td><%=s.text_field :lastName, class: "form-control"%></td>
+      </tr>
+        <tr>
+          <td><%=s.label :Date_Of_Birth%></td>
+          <td><%=s.date_field :dob, class: "form-control"%></td>
+        </tr>
+        <tr>
+          <td><%=s.label :Gender%></td>
+          <td><%=s.label 'Male'%><%= s.radio_button 'gender', true%>
+              <%=s.label 'Female'%><%= s.radio_button 'gender', false%>
+          </td>
+        </tr>
+        <tr>
+          <td><%=s.label :Mobile%></td>
+          <td><%=s.text_field :mobile, class: "form-control"%></td>
+        </tr>
+        <tr>
+          <td><%=s.label :Image%></td>
+          <td><%=s.file_field :image, class: "form-control"%></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td colspan="2"><%= s.submit class:"btn btn-lg btn-primary btn-block"%></td>
+      </tr>
+  </table>
+<% end %>

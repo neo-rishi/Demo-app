@@ -7,12 +7,14 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
   attr_accessor :password_confirmation
-  validates :name, presence: true
+
   validates :email, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
   validates_confirmation_of :password
 
   # association with user profile
   has_one :profile
+  has_one :address
+  has_many :pasts_companies
   # users posts
   has_many :posts
   #users commentsz
