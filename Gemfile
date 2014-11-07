@@ -48,16 +48,12 @@ gem "less-rails"
 gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git', branch: 'bootstrap3'
 gem 'pry'
 gem 'rails4-autocomplete', '~> 1.1.0'
-gem 'jquery-rails'
 group :development do
   #gem "better_errors"
   #gem "binding_of_caller"
 end
-#use for facebook device integriation
-gem 'omniauth-facebook'
-#gem for device
+
 gem 'devise'
 #maile gem
 gem 'mail'
-# rename url and good locking
-gem 'friendly_id', '~> 5.0.0'
+gem 'rails_12factor'
