@@ -6,7 +6,7 @@
         <%= link_to 'view all', follow_users_path %>
     </div>
     <div id="user_follow_div">
-      <% @follows.each do |user|%>
+      <% follows.each do |user|%>
         <div id="show_follow_user">
           <table >
             <tr id ="row-<%=user.id%>">

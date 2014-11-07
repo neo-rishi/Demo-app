@@ -1,7 +1,7 @@
 <div class="headeinnerdiv" id="div-<%=post.id%>">
   <div style="height: auto; width:100%;">
     <div style=" float:left;min-height: 60px; width:10%;">
-      <%=link_to user_path(@user_name) do %>
+      <%=link_to user_path(current_user) do %>
         <% if post.user.profile.present? %>
           <%= image_tag post.user.profile.image.url, size: "48x48",class:"avatarImagediv",style:"" %>
         <% else %>
@@ -10,7 +10,7 @@
        <% end %>
     </div>
     <div style=" float:right;min-height: 60px; width:90%;">
-      <span><%=link_to post.user.profile.name.upcase, user_path(@user_name), class: "fullname", style: ""%></span>
+      <span><%=link_to post.user.profile.name.upcase, user_path(current_user), class: "fullname", style: ""%></span>
       <p><%=post.title%></p>
     </div>
   </div>
@@ -40,8 +40,8 @@
         <% end %>
       </li>
       <li id="favcheck">
-        <%if @cheack_fav.present?%>
-          <% if @check_fav.include?(post.id) %>
+        <%if favourit?.present?%>
+          <% if favourit?.include?(post.id) %>
             <h5> <%=link_to 'Unfavourite', favourite_post_path(post),id: "fav#{post.id}"%></h5>
           <% else %>
             <h5><%=link_to 'favourite', favourite_post_path(post),id:"fav#{post.id}"%></h5>

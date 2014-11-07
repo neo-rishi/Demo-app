@@ -5,7 +5,7 @@
       <h2>Tweets</h2>
     </div>
     <div id="allpostshow">
-    <%=render partial: "post", collection: @posts%>
+    <%=render partial: "post", collection: User.get_all_post(following_users)%>
   </div>
   </div>
     <%=render "userfollowfollowing"%>

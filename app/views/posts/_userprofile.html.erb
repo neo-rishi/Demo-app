@@ -1,23 +1,23 @@
 <div id="yourstatus" style="float:left; margin-left:5%;margin-right:2%; width:20%;"
     class="DashboardProfileCard module">
     <div style="width:100%;height:288px;">`
-      <%=link_to image_tag('default_profile_6_bigger.png',:alt =>  "alt text", class:"DashboardProfileCard-avatarImage"),user_path(@user_name.id), class: "DashboardProfileCard-bg u-bgUserColor u-block"%>
+      <%=link_to image_tag('default_profile_6_bigger.png',:alt =>  "alt text", class:"DashboardProfileCard-avatarImage"),user_path(current_user), class: "DashboardProfileCard-bg u-bgUserColor u-block"%>
       <div class="DashboardProfileCard-userFields ">
         <div class="DashboardProfileCard-name">
-          <%=link_to @user_name.profile.name, user_path(@user_name), class:"textInheritColor"%>
+          <%=link_to current_user.profile.name, user_path(current_user), class:"textInheritColor"%>
         </div>
         <span>
-           <%=link_to @user_name.email, user_path(@user_name), class:"screennameLink"%>
+           <%=link_to current_user.email, user_path(current_user), class:"screennameLink"%>
         </span>
           <div style="width:100%;" class="userprofilestatus ">
             <div class=" col-md-6 ">
-              <%=link_to  user_path(@user_name), class:"screennameLink", style:"TEXT-DECORATION: NONE", title: " #{@tweets}Tweets" do %>
+              <%=link_to  user_path(current_user), class:"screennameLink", style:"TEXT-DECORATION: NONE", title: " #{@tweets}Tweets" do %>
                 <span class="statelable" STYLE="TEXT-DECORATION: NONE">POSTS</span><BR>
                 <span STYLE="TEXT-DECORATION: NONE; color: #0084B4 !important;" class="statValue"><%=@tweets%></span>
               <% end %>
             </div>
             <div class="col-md-6">
-              <%=link_to  user_path(@user_name), class:"screennameLink", style:"TEXT-DECORATION: NONE", title: " #{@followings}Tweets" do %>
+              <%=link_to  user_path(current_user), class:"screennameLink", style:"TEXT-DECORATION: NONE", title: " #{@followings}Tweets" do %>
                 <span class="statelable" STYLE="TEXT-DECORATION: NONE">FOLLOWINGS</span><BR>
                 <span STYLE="TEXT-DECORATION: NONE; color: #0084B4 !important;" class="statValue"><%=@followings_count%></span>
               <% end %>

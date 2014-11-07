@@ -35,5 +35,10 @@ class User < ActiveRecord::Base
   has_many :favshow, through: :favouirteshow
   accepts_nested_attributes_for :profile
   has_many :messages, foreign_key: :from
+
+  # Get all post that show in current_user page
+  def self.get_all_post(follow)
+    Post.where(user_id: follow).order('id DESC')
+  end
 end
 

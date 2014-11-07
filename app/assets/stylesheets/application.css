@@ -23,7 +23,7 @@ label {
 }
 .cf:before,
 .cf:after {
-    content: "";
+
     display: table;
 }
 

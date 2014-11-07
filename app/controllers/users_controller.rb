@@ -1,27 +1,26 @@
 class UsersController < ApplicationController
+  before_action :find_user, only: [:show]
   autocomplete :user, :name
   before_action :authenticate_user!, except: [:create, :login, :new, :signin]
 
-  session ={id: ''} #It is hold session
   def index
     @users = User.all
     @users_id = current_user.users_followings.pluck(:follower_id)
   end
 #show user profile
 def show
-  @user = User.find(params[:id])
-  @user_name = @user
   @posts = @user.posts
   @post = Post.new
-  @check_fav = @user_name.favourites.pluck(:post_id)
+  @check_fav = @user.favourites.pluck(:post_id)
   users = @user_name.followings.pluck(:id)
   users << @user_name[:id]
   @tweets = @user_name.posts.count
-  @followings_count = @user_name.followings.count
-  @followings = @user_name.followings.last(5)
+  @followings_count = @user.followings.count
+  @followings = @user.followings.last(5)
   @follows = User.where("id NOT IN (?)", users).first(5)
   @followers = @user.followers.last(5)
 end
+
 #update profile information
   def update_profile
     if current_user.profile.present?
@@ -30,6 +29,7 @@ end
      @profile = current_user.profile
     end
   end
+
   def update_profile_method
     respond_to do |format|
       if current_user.profile.present?
@@ -158,6 +158,12 @@ end
         format.html { redirect_to change_password_user_path, notice: 'Password was not successfully updated.' }
       end
     end
+  end
+
+  # find user
+
+  def find_user
+    @user = User.find(params[:id])
   end
 end
 

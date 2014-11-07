@@ -1,18 +1,12 @@
 class PostsController < ApplicationController
 	before_action :set_post, only: [:show, :edit, :update, :destroy]
+
 	#show all users post that folloing by current user
 	def index
 		@post = Post.new
-		@check_fav = current_user.favourites.pluck(:post_id)
-		users = current_user.followings.pluck(:id)
-		users << current_user[:id]
-		@posts = Post.where(user_id: users).order('id DESC').includes(:user)
-		@tweets = current_user.posts.count
 		@followings_count = current_user.followings.count
 		@followings = current_user.followings.last(5)
-		@follows = User.where("id NOT IN (?)", users).first(5)
 		@followers = current_user.followers.last(5)
-		@user_name = current_user
 	end
 
 	#create new post
@@ -108,7 +102,7 @@ class PostsController < ApplicationController
 		end
 	end
 	private
-	#find post byid
+	#find post by id
 	def set_post
 		@post = Post.find(params[:id])
 	end
