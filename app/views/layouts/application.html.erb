@@ -19,7 +19,7 @@
             <li class="dropdown home-head">
               <a id="drop4" data-toggle="dropdown" href="#"> Home <span class="caret"></span></a>
                 <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4" style="min-width: 127px;">
-                  <li role="presentation"><%= link_to current_user[:name], user_path(current_user), class: "btn btn-default-lg navbar-btn" %></li>
+                  <li role="presentation"><%= link_to current_user_name, user_path(current_user), class: "btn btn-default-lg navbar-btn" %></li>
                   <li role="presentation"><%= link_to "Message",  new_messages_users_path, class: "btn btn-default-lg navbar-btn" %></li>
                   <li role="presentation"><%= link_to "Update Profile",  update_profile_user_path(current_user), class: "btn btn-default-lg navbar-btn" %></li>
                   <li role="presentation"><%= link_to "Change Password",  edit_user_registration_path, class: "btn btn-default-lg navbar-btn" %></li>

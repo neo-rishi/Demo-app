@@ -1,2 +1,2 @@
-console.log(<%= comments.first %>);
-$('.show_comment').empty.append("<%= escape_javascript render partial: 'read_all_comments', @comments%>");
+
+$('#show_user_comment').replaceWith("<%= escape_javascript render partial: 'read_all_comments', :locals => { :comments => @comments } %>");

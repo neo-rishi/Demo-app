@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -17,7 +18,7 @@ class User < ActiveRecord::Base
   has_many :pasts_companies
   # users posts
   has_many :posts
-  #users commentsz
+  #users comments
   has_many :comments
   # This association for user folowers
   has_many :users_followings, foreign_key: :follower_id

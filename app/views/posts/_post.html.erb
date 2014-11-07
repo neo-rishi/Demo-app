@@ -17,7 +17,7 @@
   <div class="navbar-header" id="postinfoexpand<%=post.id%>" style="display:none">
     <ul class="nav navbar-nav container" style="height:60px;">
       <li style="height:60px;">
-        <%=link_to read_comments_post_path(post) ,class: 'read_comment', style: "height:60px;", remote: true do %>
+        <%=link_to read_comments_post_path(post) ,class: 'read_comment', style: "height:60px;" do %>
           <p>comments</p>
           <strong><%= post.comments.count %></strong>
         <% end %>

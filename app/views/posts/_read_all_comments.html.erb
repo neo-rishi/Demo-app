@@ -1,5 +1,11 @@
-<% @comments.each do |comment|%>
-  <div>
-    <%=comment.content%>
-  </div>
-<% end %>
+<ol class="activity-popup-users comment-dropdown">
+  <% comments.each do |comment|%>
+    <li >
+      <div class="stream-item">
+        <div style="float:left; margin-left:5px;"><%= link_to (image_tag comment.post.user.profile.image.url, size: "30x30"), user_path(comment.post.user)%>
+        </div>
+        <div style= "padding-left: 5px;"> <%=comment.content%></div>
+      </div>
+    </li><br>
+  <% end %>
+</ol>

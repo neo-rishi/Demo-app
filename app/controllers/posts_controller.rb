@@ -49,7 +49,7 @@ class PostsController < ApplicationController
 		if @post.destroy
 			redirect_to posts_path, notice: 'Post was sucessfuly destroy..'
 		else
-			redirect_to posts_path, notice: 'Post not deleted'
+			redirect_to posts_path, error: 'Post not deleted'
 		end
 	end
 	#Increase Post vote
@@ -105,6 +105,7 @@ class PostsController < ApplicationController
 		@comments = Post.find(params[:id]).comments
 		respond_to do |format|
 			format.js
+			format.html
 		end
 	end
 	private

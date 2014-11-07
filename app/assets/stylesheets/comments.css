@@ -1,0 +1,32 @@
+#read_comment_modal{
+  /*height: 520px;
+  width: 415px;*/
+}
+.account {
+border-bottom: 0;
+border-top: 1px solid #e1e8ed;
+margin-bottom: 6px;
+padding-bottom: 3px;
+min-height: 35px;
+}
+
+.stream-item {
+background: #fff;
+border-left: 1px solid #e1e8ed;
+border-right: 1px solid #e1e8ed;
+background-clip: padding-box;
+
+}
+
+.comment-dropdown {
+overflow-y: scroll;
+}
+
+.activity-popup-users {
+max-height: 275px;
+}
+
+.li_size{
+  height:;
+  background-color: #ebf0f3;
+}
