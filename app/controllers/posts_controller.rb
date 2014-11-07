@@ -105,7 +105,6 @@ class PostsController < ApplicationController
 		@comments = Post.find(params[:id]).comments
 		respond_to do |format|
 			format.js
-			format.html
 		end
 	end
 	private
